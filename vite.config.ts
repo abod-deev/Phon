@@ -6,7 +6,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    base: '/Phon/', // تأكد من اسم الريبو بالضبط
+    // 🔹 اسم الريبو على GitHub بالضبط
+    base: '/Phon/',
     plugins: [react()],
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -14,12 +15,12 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'), // الافضل أن تشير لمجلد src
+        '@': path.resolve(__dirname, 'src'), // يشير لمجلد src
       }
     },
     build: {
       outDir: 'dist',
-      assetsDir: 'assets',
+      assetsDir: 'assets', // كل الملفات داخل dist/assets
     }
   };
 });
