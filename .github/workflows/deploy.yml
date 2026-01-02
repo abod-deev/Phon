@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # أو أي فرع تريد النشر منه
+      - main  # فرعك الرئيسي
 
 jobs:
   deploy:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -22,7 +22,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy
+      - name: Setup Git identity
+        run: |
+          git config --global user.name "abod-deev"
+          git config --global user.email "abod-deev@gmil.com"
+
+      - name: Deploy to GitHub Pages
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx gh-pages -d dist -r https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/abod-deev/Phon.git
+        run: npx gh-pages -d dist -r https://x-access-token:${GH_TOKEN}@github.com/abod-deev/Phon.git
