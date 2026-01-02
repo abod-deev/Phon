@@ -6,25 +6,20 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    // 🔹 ضع هنا اسم الريبو على GitHub بالضبط
-    base: '/Phon/',
-
-    server: {
-      port: 3000,
-      host: '0.0.0.0',
-    },
-
+    base: '/Phon/', // تأكد من اسم الريبو بالضبط
     plugins: [react()],
-
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
     },
-
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
+        '@': path.resolve(__dirname, 'src'), // الافضل أن تشير لمجلد src
+      }
     },
+    build: {
+      outDir: 'dist',
+      assetsDir: 'assets',
+    }
   };
 });
