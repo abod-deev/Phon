@@ -1,33 +1,28 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
-
-permissions:
-  contents: write
+      - main  # أو أي فرع تريد النشر منه
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
-      - run: npm install
-      - run: npm run build
+      - name: Install dependencies
+        run: npm install
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+      - name: Build
+        run: npm run build
 
-      - name: Deploy to gh-pages
+      - name: Deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx gh-pages -d dist -r https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/abod-beev/Phon.git
