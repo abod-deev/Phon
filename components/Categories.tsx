@@ -30,7 +30,8 @@ const Categories: React.FC<CategoriesProps> = ({ onCategoryClick }) => {
               onClick={() => onCategoryClick(categoryToView[cat.id])}
               className="group relative cursor-pointer overflow-hidden rounded-2xl bg-slate-800 border border-white/5 transition-all hover:border-indigo-500/50 hover:shadow-lg"
             >
-              <div className="aspect-[16/10] relative">
+              {/* Reduced aspect ratio height */}
+              <div className="aspect-[16/7] relative">
                 <img 
                   src={cat.image} 
                   alt={cat.name} 
@@ -38,9 +39,9 @@ const Categories: React.FC<CategoriesProps> = ({ onCategoryClick }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               </div>
-              <div className="absolute bottom-4 right-4 text-right">
-                <h3 className="text-xl font-bold text-white mb-0.5">{cat.name}</h3>
-                <p className="text-indigo-400 text-xs font-medium">{cat.count} منتج</p>
+              <div className="absolute bottom-3 right-4 text-right">
+                <h3 className="text-lg font-bold text-white mb-0.5">{cat.name}</h3>
+                <p className="text-indigo-400 text-[10px] font-medium">{cat.count} منتج</p>
               </div>
             </div>
           ))}

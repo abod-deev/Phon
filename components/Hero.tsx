@@ -34,9 +34,9 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Image */}
+          {/* Image - Reduced max-width */}
           <div className="flex-1 relative">
-            <div className="relative z-10 w-full max-w-sm mx-auto aspect-square rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+            <div className="relative z-10 w-full max-w-[260px] mx-auto aspect-square rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
               <img 
                 src="https://picsum.photos/seed/phonehero/800/800" 
                 alt="Latest Phone" 
@@ -45,9 +45,8 @@ const Hero: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
             </div>
             {/* Floating Stats */}
-            <div className="absolute -top-2 -right-2 bg-slate-900/90 backdrop-blur border border-white/10 p-3 rounded-xl shadow-2xl animate-bounce">
-              <div className="text-indigo-400 font-bold text-sm">20% خصم</div>
-              <div className="text-[10px] text-gray-400">لفترة محدودة</div>
+            <div className="absolute -top-2 -right-2 bg-slate-900/90 backdrop-blur border border-white/10 p-2 rounded-xl shadow-2xl animate-bounce">
+              <div className="text-indigo-400 font-bold text-[10px]">20% خصم</div>
             </div>
           </div>
         </div>
