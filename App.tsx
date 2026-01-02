@@ -31,27 +31,26 @@ const App: React.FC = () => {
   }, [currentView]);
 
   const renderBrandPage = (brandName: string, brandKey: string) => {
-    // تصفية المنتجات حسب الماركة واختيار 5 هواتف كحد أقصى كما هو مطلوب
     const brandProducts = PRODUCTS
       .filter(p => p.brand.toLowerCase() === brandKey.toLowerCase())
       .slice(0, 5);
 
     return (
-      <div className="pt-32 pb-20 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-right">
-          <div className="flex items-center gap-4 mb-4">
+      <div className="pt-24 pb-12 min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-right">
+          <div className="flex items-center gap-3 mb-3">
              <button 
                onClick={() => setCurrentView('home')}
-               className="p-2 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white transition-all"
+               className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-all"
              >
-               <svg className="w-6 h-6 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <svg className="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                </svg>
              </button>
-             <h1 className="text-5xl font-black text-white">هواتف {brandName}</h1>
+             <h1 className="text-3xl font-black text-white">هواتف {brandName}</h1>
           </div>
-          <p className="text-gray-400 text-xl">أفضل 5 هواتف مختارة من {brandName} متوفرة لدينا الآن.</p>
-          <div className="h-1.5 w-24 bg-indigo-600 rounded-full mt-6"></div>
+          <p className="text-gray-400 text-sm">أفضل 5 هواتف مختارة من {brandName} متوفرة لدينا الآن.</p>
+          <div className="h-1 w-16 bg-indigo-600 rounded-full mt-4"></div>
         </div>
         <ProductGrid 
           products={brandProducts} 
@@ -59,7 +58,7 @@ const App: React.FC = () => {
           onAddToCart={handleAddToCart}
         />
         {brandProducts.length === 0 && (
-          <div className="text-center py-20 text-gray-500">لا توجد منتجات متوفرة حالياً لهذه الماركة.</div>
+          <div className="text-center py-20 text-gray-500 text-sm">لا توجد منتجات متوفرة حالياً لهذه الماركة.</div>
         )}
       </div>
     );
@@ -78,9 +77,9 @@ const App: React.FC = () => {
           <>
             <Hero />
             <Categories onCategoryClick={setCurrentView} />
-            <div className="max-w-7xl mx-auto px-4 pt-20">
-              <h2 className="text-3xl font-bold text-white mb-2">مقترحاتنا لك</h2>
-              <div className="h-1 w-20 bg-indigo-600 rounded-full mb-8"></div>
+            <div className="max-w-7xl mx-auto px-4 pt-12">
+              <h2 className="text-2xl font-bold text-white mb-1.5">مقترحاتنا لك</h2>
+              <div className="h-0.5 w-16 bg-indigo-600 rounded-full mb-6"></div>
             </div>
             <ProductGrid 
               products={PRODUCTS.slice(0, 8)} 
@@ -92,16 +91,16 @@ const App: React.FC = () => {
         )}
 
         {currentView === 'comparison' && (
-          <div className="pt-20">
+          <div className="pt-16">
             <Comparison />
           </div>
         )}
 
         {currentView === 'offers' && (
-          <div className="pt-32 pb-20 min-h-screen">
-            <div className="max-w-7xl mx-auto px-4 text-center mb-16">
-              <h2 className="text-5xl font-black text-white mb-4">أقوى العروض الحصرية</h2>
-              <p className="text-gray-400 text-xl italic">خصومات تصل إلى 30% على هواتف مختارة</p>
+          <div className="pt-24 pb-12 min-h-screen">
+            <div className="max-w-7xl mx-auto px-4 text-center mb-10">
+              <h2 className="text-3xl font-black text-white mb-3">أقوى العروض الحصرية</h2>
+              <p className="text-gray-400 text-sm italic">خصومات تصل إلى 30% على هواتف مختارة</p>
             </div>
             <ProductGrid 
               products={PRODUCTS.filter(p => p.isOffer || p.oldPrice)} 
